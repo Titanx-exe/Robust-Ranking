@@ -1,5 +1,4 @@
 import subprocess
-import sys
 
 #from run_script_E5_msmarco import commands
 

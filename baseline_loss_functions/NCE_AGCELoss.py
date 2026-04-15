@@ -1,4 +1,6 @@
 import torch
+from baseline_loss_functions.NCELoss import NCELoss
+from baseline_loss_functions.AGCELoss import AGCELoss
 
 class NCEandAGCE(torch.nn.Module):
     def __init__(self, alpha=1., beta=1., num_classes=10, a=3, q=1.5):

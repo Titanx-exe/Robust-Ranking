@@ -207,7 +207,7 @@ class IndexEvaluator:
         doc_encodings=[]
         with torch.no_grad():
             for step, batch in enumerate(iter_):
-                if not isinstance(model,E5Ranker) and not isinstance(model, Qwen3Ranker) and not isinstance(model, Llama3Ranker) and not isinstance(model, LlamaDecoderRanker):
+                if not isinstance(model,E5Ranker) and not isinstance(model, Qwen3Ranker) and not isinstance(model, Llama3Ranker) and not isinstance(model, LlamaDecoderRanker) and not isinstance(model, Qwen3DecoderRanker):
 
                     context_input = batch
                     #candidate_input = batch["candidate_input"]

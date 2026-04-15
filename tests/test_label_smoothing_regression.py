@@ -10,7 +10,6 @@ Tests cover:
 6. Consistency between loss_gls and cross_entropy at boundary (smoothness=0.0)
 """
 
-import copy
 import math
 import sys
 import os

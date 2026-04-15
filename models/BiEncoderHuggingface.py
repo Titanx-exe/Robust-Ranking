@@ -200,26 +200,26 @@ class BiEncoderRanker(torch.nn.Module):
             scores = torch.squeeze(scores, dim=2)
             return scores
 
-        # negative label smoothing
-        def loss_gls(self, logits, labels):
-            # logits: model prediction logits before the soft-max, with size [batch_size, classes]
-            # labels: the (noisy) labels for evaluation, with size [batch_size]
-            # smooth_rate: could go either positive or negative,
-            # smooth_rate candidates we adopted in the paper: [0.8, 0.6, 0.4, 0.2, 0.0, -0.2, -0.4, -0.6, -0.8, -1.0, -2.0, -4.0, -6.0, -8.0].
-            # print("labels are...............................", labels)
-            # print("labels are...............................", logits)
-            print("Applying gls##############################")
-            smooth_rate = self.params['label_smoothness']
-            confidence = 1. - smooth_rate
-            logprobs = F.log_softmax(logits, dim=-1)
-            nll_loss = -logprobs.gather(dim=-1, index=labels.unsqueeze(1))
-            nll_loss = nll_loss.squeeze(1)
-            # print()
-            smooth_loss = -logprobs.mean(dim=-1)
-            loss = confidence * nll_loss + smooth_rate * smooth_loss
-            loss_numpy = loss.data.cpu().numpy()
-            num_batch = len(loss_numpy)
-            return torch.sum(loss) / num_batch
+    # negative label smoothing
+    def loss_gls(self, logits, labels):
+        # logits: model prediction logits before the soft-max, with size [batch_size, classes]
+        # labels: the (noisy) labels for evaluation, with size [batch_size]
+        # smooth_rate: could go either positive or negative,
+        # smooth_rate candidates we adopted in the paper: [0.8, 0.6, 0.4, 0.2, 0.0, -0.2, -0.4, -0.6, -0.8, -1.0, -2.0, -4.0, -6.0, -8.0].
+        # print("labels are...............................", labels)
+        # print("labels are...............................", logits)
+        print("Applying gls##############################")
+        smooth_rate = self.params['label_smoothness']
+        confidence = 1. - smooth_rate
+        logprobs = F.log_softmax(logits, dim=-1)
+        nll_loss = -logprobs.gather(dim=-1, index=labels.unsqueeze(1))
+        nll_loss = nll_loss.squeeze(1)
+        # print()
+        smooth_loss = -logprobs.mean(dim=-1)
+        loss = confidence * nll_loss + smooth_rate * smooth_loss
+        loss_numpy = loss.data.cpu().numpy()
+        num_batch = len(loss_numpy)
+        return torch.sum(loss) / num_batch
 
     # label_input -- negatives provided
     # If label_input is None, train on in-batch negatives

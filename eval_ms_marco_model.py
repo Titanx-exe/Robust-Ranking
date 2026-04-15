@@ -160,6 +160,6 @@ try:
         e = int(f.read())
     with open("val_ece_log.txt", "a+") as f_ece:
         f_ece.write(f"Epoch {e}, Validation ECE = {ece:.4f}\n")
-except:
+except (FileNotFoundError, ValueError):
     pass
 

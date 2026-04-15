@@ -1,4 +1,5 @@
-import os
+import subprocess
+import sys
 
 #from run_script_E5_msmarco import commands
 
@@ -39,4 +40,4 @@ commands = [
 
 for cmd in commands:
     print(f"Running: {cmd}")
-    os.system(cmd)
+    subprocess.run(cmd.split(), check=True)

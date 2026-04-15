@@ -16,7 +16,7 @@ import time
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
-project_root = "/upb/users/h/hpurohit/profiles/unix/cs/RR_Retrieval/Robust_Ranking/RobustRanking"
+project_root = os.environ.get("ROBUST_RANKING_ROOT", os.path.dirname(os.path.abspath(__file__)))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 

@@ -439,7 +439,7 @@ class Llama3LBWCollator:
             
         try:
             self.entity_text_dict = pickle.load(open("data/ent_descriptions_update.pkl", "rb"))
-        except:
+        except (FileNotFoundError, pickle.UnpicklingError):
             self.entity_text_dict = {}
 
     def collate(self, batch, is_passage):
@@ -485,7 +485,7 @@ class LlamaDecoderCollator:
         
         try:
             self.entity_text_dict = pickle.load(open("data/ent_descriptions_update.pkl", "rb"))
-        except:
+        except (FileNotFoundError, pickle.UnpicklingError):
             self.entity_text_dict = {}
     
     def collate(self, batch, is_passage):
@@ -534,7 +534,7 @@ class Qwen3DecoderCollator(LlamaDecoderCollator):
         
         try:
             self.entity_text_dict = pickle.load(open("data/ent_descriptions_update.pkl", "rb"))
-        except:
+        except (FileNotFoundError, pickle.UnpicklingError):
             self.entity_text_dict = {}
     
     def collate(self, batch, is_passage):

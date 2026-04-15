@@ -1,10 +1,20 @@
 data/
 myenv/
-data/
 Finetuning/finetuned_models/
 Finetuning/Datasets/
 Finetuning/Log/
 Finetuning/Loss
 *.jsonl
 *.log
+
+# Sensitive files
+.env
+.env.*
+*.pem
+*.key
+*.secret
+credentials.*
+*.credentials
+config.local.*
+secrets.*
 

@@ -26,7 +26,10 @@ MODEL_ID = "meta-llama/Llama-3.2-1B"
 DATASET_PATH = "blink_training_cleaned_1m.jsonl"
 OUTPUT_DIR = "finetuned_models/llama-3.2-1b-lora-dhnm_attn_blink_1m_testrun1"
 LOSS_LOG_PATH = "Loss/dhnm_llama_1b_attn_blink_1m_testrun1.jsonl"
-EXTERNAL_ENTITIES_PKL = "/upb/users/h/hpurohit/profiles/unix/cs/RR_Retrieval/Robust_Ranking/RobustRanking/data/ent_descriptions_update.pkl"
+EXTERNAL_ENTITIES_PKL = os.environ.get(
+    "EXTERNAL_ENTITIES_PKL",
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "ent_descriptions_update.pkl")
+)
 
 # LoRA
 LORA_R = 16
